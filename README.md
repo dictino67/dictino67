@@ -1,16 +1,26 @@
-## Hi there 👋
+# Formulaire de contact PostgreSQL
 
-<!--
-**dictino67/dictino67** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Petite application Node.js permettant d'enregistrer un nom, un prenom, une adresse email et un GSM dans PostgreSQL.
 
-Here are some ideas to get you started:
+## Installation
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+```bash
+npm install
+cp .env.example .env
+```
+
+Modifiez `DATABASE_URL` dans `.env`, puis créez la table :
+
+```bash
+psql "$DATABASE_URL" -f schema.sql
+```
+
+## Demarrage
+
+```bash
+npm start
+```
+
+Ouvrez ensuite <http://localhost:3000> dans votre navigateur.
+
+Le formulaire envoie ses données à `POST /api/contacts`. La connexion PostgreSQL et les identifiants restent côté serveur.
