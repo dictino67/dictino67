@@ -1,23 +1,26 @@
-# Formulaire de contact PHP
+# Formulaire de contact PostgreSQL
 
-Application web PHP affichant un formulaire de contact avec les champs nom, prénom, adresse mail et GSM.
+Petite application Node.js permettant d'enregistrer un nom, un prenom, une adresse email et un GSM dans PostgreSQL.
 
-## Prérequis
-
-- PHP 7.4 ou supérieur
-
-## Démarrage
-
-Depuis le dossier du projet :
+## Installation
 
 ```bash
-php -S localhost:8000
+npm install
+cp .env.example .env
 ```
 
-Puis ouvrir [http://localhost:8000](http://localhost:8000).
+Modifiez `DATABASE_URL` dans `.env`, puis créez la table :
 
-## Fonctionnement
+```bash
+psql "$DATABASE_URL" -f schema.sql
+```
 
-Le formulaire vérifie que tous les champs sont remplis et que l'adresse mail possède un format valide. Après validation, un message de confirmation est affiché.
+## Demarrage
 
-Les données ne sont actuellement pas enregistrées dans une base de données et aucun mail réel n'est envoyé.
+```bash
+npm start
+```
+
+Ouvrez ensuite <http://localhost:3000> dans votre navigateur.
+
+Le formulaire envoie ses données à `POST /api/contacts`. La connexion PostgreSQL et les identifiants restent côté serveur.

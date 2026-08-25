@@ -11,7 +11,7 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: linear-gradient(135deg, #bdc9bf 0%, #d5e1d9 100%);
+  background: linear-gradient(135deg, #e8eee9 0%, #d5e1d9 100%);
 }
 
 .top-nav {
@@ -19,7 +19,6 @@ body {
   justify-content: center;
   gap: 12px;
   padding: 20px 16px 0;
- 
 }
 
 .nav-link {
@@ -30,7 +29,6 @@ body {
   background: rgba(255, 255, 255, 0.55);
   font: 700 0.8rem/1.2 Arial, sans-serif;
   transition: background 0.2s ease;
-  min-height: 44px;
 }
 
 .nav-link:hover,
@@ -43,7 +41,7 @@ body {
   display: grid;
   min-height: calc(100vh - 72px);
   place-items: center;
-  padding: 32px 20px 48px;
+  padding: 32px 20px;
 }
 
 .form-panel {
@@ -152,7 +150,6 @@ button:disabled {
 
 .list-panel {
   width: min(100%, 1100px);
-  min-width: 0;
   padding: clamp(24px, 5vw, 48px);
   background: #fffdf8;
   border: 1px solid #c8d3ca;
@@ -198,14 +195,11 @@ button:disabled {
 }
 
 .table-wrapper {
-  max-width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100%;
-  min-width: 780px;
   border-collapse: collapse;
   margin-top: 24px;
   font: 0.95rem/1.5 Arial, sans-serif;
@@ -235,7 +229,6 @@ th {
 
 .page-btn {
   min-width: 120px;
-  min-height: 44px;
 }
 
 .page-btn:disabled {
@@ -269,38 +262,9 @@ th {
 }
 
 @media (max-width: 540px) {
-  .top-nav {
-    padding-top: 12px;
-  }
-
-  .page-shell {
-    display: block;
-    padding: 20px 12px 32px;
-  }
-
   .form-panel,
   .list-panel {
     box-shadow: 8px 8px 0 #b7c8bb;
-    padding: 24px 16px;
-  }
-
-  h1 {
-    font-size: clamp(2rem, 12vw, 3rem);
-  }
-
-  .intro {
-    margin-bottom: 24px;
-  }
-
-  .search-controls {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .search-btn,
-  .secondary-btn,
-  .pagination .page-btn {
-    width: 100%;
   }
 
   .field-row {
@@ -309,84 +273,5 @@ th {
 
   .pagination {
     flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pagination span {
-    order: -1;
-    text-align: center;
-  }
-
-  .table-wrapper {
-    margin-right: -16px;
-    padding-right: 16px;
-    overflow: visible;
-  }
-
-  table {
-    display: block;
-    min-width: 0;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tbody,
-  tr,
-  td {
-    display: block;
-  }
-
-  tr {
-    margin-bottom: 16px;
-    border: 1px solid #d9e2d9;
-    background: #f7faf5;
-  }
-
-  td {
-    display: grid;
-    grid-template-columns: minmax(74px, 28%) 1fr;
-    gap: 12px;
-    padding: 10px 12px;
-    overflow-wrap: anywhere;
-  }
-
-  td::before {
-    content: attr(data-label);
-    color: #2f4a3f;
-    font-weight: 700;
-  }
-
-  td:has(.delete-btn) {
-    display: block;
-  }
-
-  td:has(.delete-btn)::before {
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  td .delete-btn {
-    width: 100%;
-  }
-}
-
-@media (min-width: 541px) and (max-width: 900px) {
-  .list-panel {
-    padding: 32px 24px;
-  }
-
-  .search-controls {
-    flex-wrap: wrap;
-  }
-
-  .search-box input {
-    flex: 1 1 100%;
-  }
-
-  .search-btn,
-  .secondary-btn {
-    flex: 1;
   }
 }
