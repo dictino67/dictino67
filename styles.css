@@ -11,7 +11,7 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: linear-gradient(135deg, #e8eee9 0%, #d5e1d9 100%);
+  background: linear-gradient(135deg, #bdc9bf 0%, #d5e1d9 100%);
 }
 
 .top-nav {
@@ -19,6 +19,7 @@ body {
   justify-content: center;
   gap: 12px;
   padding: 20px 16px 0;
+ 
 }
 
 .nav-link {
