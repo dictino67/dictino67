@@ -61,6 +61,27 @@ app.get('/api/contacts', async (request, response) => {
   }
 });
 
+app.get('/api/contacts/:id', async (request, response) => {
+  const id = Number.parseInt(request.params.id, 10);
+  if (!Number.isFinite(id) || id <= 0) {
+    return response.status(400).json({ error: 'Identifiant invalide.' });
+  }
+
+  try {
+    const result = await pool.query(
+      'SELECT id, nom, prenom, email, gsm, created_at FROM contacts WHERE id = $1',
+      [id]
+    );
+    if (result.rowCount === 0) {
+      return response.status(404).json({ error: 'Contact non trouvé.' });
+    }
+    return response.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ error: 'Impossible de lire le contact.' });
+  }
+});
+
 app.post('/api/contacts', async (request, response) => {
   const { nom, prenom, email, gsm } = request.body;
 
@@ -85,6 +106,44 @@ app.post('/api/contacts', async (request, response) => {
     }
     console.error(error);
     return response.status(500).json({ error: 'Impossible d’enregistrer le contact.' });
+  }
+});
+
+app.put('/api/contacts/:id', async (request, response) => {
+  const id = Number.parseInt(request.params.id, 10);
+  const { nom, prenom, email, gsm } = request.body;
+
+  if (!Number.isFinite(id) || id <= 0) {
+    return response.status(400).json({ error: 'Identifiant invalide.' });
+  }
+
+  if (![nom, prenom, email, gsm].every((value) => typeof value === 'string' && value.trim())) {
+    return response.status(400).json({ error: 'Tous les champs sont obligatoires.' });
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+    return response.status(400).json({ error: 'L’adresse email est invalide.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE contacts
+       SET nom = $1, prenom = $2, email = $3, gsm = $4
+       WHERE id = $5
+       RETURNING id, nom, prenom, email, gsm, created_at`,
+      [nom.trim(), prenom.trim(), normalizedEmail, gsm.trim(), id]
+    );
+    if (result.rowCount === 0) {
+      return response.status(404).json({ error: 'Contact non trouvé.' });
+    }
+    return response.json({ message: 'Contact modifié avec succès.', contact: result.rows[0] });
+  } catch (error) {
+    if (error.code === '23505') {
+      return response.status(409).json({ error: 'Cette adresse email existe déjà.' });
+    }
+    console.error(error);
+    return response.status(500).json({ error: 'Impossible de modifier le contact.' });
   }
 });
 

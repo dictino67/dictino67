@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajouter un contact</title>
+  <title>Modifier un contact</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <nav class="top-nav" aria-label="Navigation principale">
-    <a href="index.html" class="nav-link active">Home</a>
+    <a href="index.html" class="nav-link">Home</a>
     <a href="list.html" class="nav-link">List</a>
     <a href="propos.html" class="nav-link">Propos</a>
-    <a href="modifier.html" class="nav-link">Modifier</a>
+    <a href="modifier.html" class="nav-link active">Modifier</a>
   </nav>
 
   <main class="page-shell">
     <section class="form-panel" aria-labelledby="page-title">
       <p class="eyebrow">Carnet de contacts</p>
-      <h1 id="page-title">Ajouter un contact</h1>
-      <p class="intro">Renseignez les coordonnées du nouveau contact.</p>
+      <h1 id="page-title">Modifier un contact</h1>
+      <p class="intro">Mettez à jour les coordonnées du contact sélectionné.</p>
 
-      <form id="contact-form">
+      <form id="edit-contact-form">
         <div class="field-row">
           <label>
             Nom
@@ -42,11 +42,11 @@
           <input name="gsm" type="tel" maxlength="30" autocomplete="tel" required>
         </label>
 
-        <button type="submit">Enregistrer le contact</button>
+        <button type="submit">Modifier le contact</button>
         <p id="form-message" class="message" role="status" aria-live="polite"></p>
       </form>
     </section>
   </main>
-  <script src="script.js" defer></script>
+  <script src="modifier.js" defer></script>
 </body>
 </html>

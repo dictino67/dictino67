@@ -48,13 +48,16 @@ function renderContacts(items) {
 
   tableBody.innerHTML = items.map((contact) => `
     <tr>
-      <td>${contact.id}</td>
-      <td>${escapeHtml(contact.nom ?? '')}</td>
-      <td>${escapeHtml(contact.prenom ?? '')}</td>
-      <td>${escapeHtml(contact.email ?? '')}</td>
-      <td>${escapeHtml(contact.gsm ?? '')}</td>
-      <td>${new Date(contact.created_at).toLocaleString('fr-FR')}</td>
-      <td><button data-id="${contact.id}" class="page-btn delete-btn">Supprimer</button></td>
+      <td data-label="#">${contact.id}</td>
+      <td data-label="Nom">${escapeHtml(contact.nom ?? '')}</td>
+      <td data-label="Prénom">${escapeHtml(contact.prenom ?? '')}</td>
+      <td data-label="Email">${escapeHtml(contact.email ?? '')}</td>
+      <td data-label="GSM">${escapeHtml(contact.gsm ?? '')}</td>
+      <td data-label="Ajouté le">${new Date(contact.created_at).toLocaleString('fr-FR')}</td>
+      <td data-label="Actions" class="actions-cell">
+        <a href="modifier.html?id=${encodeURIComponent(contact.id)}" class="page-btn edit-btn">Modifier</a>
+        <button data-id="${contact.id}" class="page-btn delete-btn">Supprimer</button>
+      </td>
     </tr>
   `).join('');
 }

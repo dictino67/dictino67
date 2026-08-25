@@ -16,6 +16,7 @@ body {
 
 .top-nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
   padding: 20px 16px 0;
@@ -41,7 +42,7 @@ body {
   display: grid;
   min-height: calc(100vh - 72px);
   place-items: center;
-  padding: 32px 20px;
+  padding: 32px 20px 48px;
 }
 
 .form-panel {
@@ -150,6 +151,7 @@ button:disabled {
 
 .list-panel {
   width: min(100%, 1100px);
+  min-width: 0;
   padding: clamp(24px, 5vw, 48px);
   background: #fffdf8;
   border: 1px solid #c8d3ca;
@@ -195,11 +197,14 @@ button:disabled {
 }
 
 .table-wrapper {
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100%;
+  min-width: 780px;
   border-collapse: collapse;
   margin-top: 24px;
   font: 0.95rem/1.5 Arial, sans-serif;
@@ -229,6 +234,7 @@ th {
 
 .page-btn {
   min-width: 120px;
+  min-height: 44px;
 }
 
 .page-btn:disabled {
@@ -257,14 +263,70 @@ th {
   background: #a23d32;
 }
 
+.edit-btn {
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 4px;
+  padding: 15px 18px;
+  border: 0;
+  border-radius: 2px;
+  color: #fffdf8;
+  background: #245a48;
+  cursor: pointer;
+  font: 700 0.9rem/1.2 Arial, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.edit-btn:hover {
+  background: #173f32;
+}
+
 .delete-btn:hover:not(:disabled) {
   background: #7e2e27;
 }
 
 @media (max-width: 540px) {
+  .top-nav {
+    gap: 8px;
+    padding: 12px 12px 0;
+  }
+
+  .nav-link {
+    flex: 1 1 calc(50% - 8px);
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  .page-shell {
+    display: block;
+    padding: 20px 12px 32px;
+  }
+
   .form-panel,
   .list-panel {
     box-shadow: 8px 8px 0 #b7c8bb;
+    padding: 24px 16px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .intro {
+    margin-bottom: 24px;
+  }
+
+  .search-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-btn,
+  .secondary-btn,
+  .pagination .page-btn {
+    width: 100%;
   }
 
   .field-row {
@@ -273,5 +335,90 @@ th {
 
   .pagination {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination span {
+    order: -1;
+    text-align: center;
+  }
+
+  .table-wrapper {
+    margin-right: -16px;
+    padding-right: 16px;
+    overflow: visible;
+  }
+
+  table {
+    display: block;
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 16px;
+    border: 1px solid #d9e2d9;
+    background: #f7faf5;
+  }
+
+  td {
+    display: grid;
+    grid-template-columns: minmax(74px, 28%) 1fr;
+    gap: 12px;
+    padding: 10px 12px;
+    overflow-wrap: anywhere;
+  }
+
+  td::before {
+    content: attr(data-label);
+    color: #2f4a3f;
+    font-weight: 700;
+  }
+
+  .actions-cell {
+    display: block;
+  }
+
+  .actions-cell::before {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .actions-cell .edit-btn,
+  .actions-cell .delete-btn {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .actions-cell .edit-btn {
+    margin-bottom: 8px;
+  }
+}
+
+@media (min-width: 541px) and (max-width: 900px) {
+  .list-panel {
+    padding: 32px 24px;
+  }
+
+  .search-controls {
+    flex-wrap: wrap;
+  }
+
+  .search-box input {
+    flex: 1 1 100%;
+  }
+
+  .search-btn,
+  .secondary-btn {
+    flex: 1;
   }
 }
