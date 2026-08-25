@@ -11,7 +11,11 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: linear-gradient(135deg, #e8eee9 0%, #d5e1d9 100%);
+  background-color: #d5e1d9;
+  background-image: linear-gradient(rgba(232, 238, 233, 0.45), rgba(213, 225, 217, 0.45)), url('fond.png');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .top-nav {
@@ -38,11 +42,27 @@ body {
   color: #fffdf8;
 }
 
+.header-image {
+  display: flex;
+  justify-content: center;
+  padding: 20px 16px 0;
+}
+
+.header-image img {
+  display: block;
+  width: min(100%, 620px);
+  height: auto;
+}
+
 .page-shell {
   display: grid;
   min-height: calc(100vh - 72px);
   place-items: center;
   padding: 32px 20px 48px;
+}
+
+.home-page-shell {
+  padding-top: 0;
 }
 
 .form-panel {
